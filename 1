@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VALORANT LFG Community</title>
+  <style>
+    body {font-family: sans-serif; margin:0; padding:0; background:#0f172a; color:#e5e7eb;}
+    header {background:#1e293b; padding:20px; text-align:center;}
+    header h1 {margin:0; font-size:28px; color:#fff;}
+    main {max-width:960px; margin:20px auto; padding:0 15px;}
+    .card {background:#1e293b; padding:20px; border-radius:12px; margin-bottom:20px;}
+    h2 {margin-top:0;}
+    label {display:block; margin-top:10px;}
+    input, select, textarea {width:100%; padding:8px; border-radius:8px; border:none; margin-top:5px; background:#0f172a; color:#fff;}
+    button {margin-top:15px; padding:10px 15px; border:none; border-radius:8px; background:#ef4444; color:#fff; cursor:pointer;}
+    button:hover {background:#dc2626;}
+    table {width:100%; border-collapse:collapse; margin-top:15px;}
+    th, td {padding:10px; text-align:left;}
+    th {background:#334155;}
+    tr:nth-child(even) {background:#1e293b;}
+    tr:nth-child(odd) {background:#0f172a;}
+    footer {text-align:center; padding:20px; background:#1e293b; margin-top:20px; color:#94a3b8;}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>VALORANT LFG (Looking For Group)</h1>
+    <p>โพสต์หาเพื่อนเล่นทีม / นัดซ้อม • ปลอดภัย ถูกต้องตามกฎ Riot</p>
+  </header>
+  <main>
+    <div class="card">
+      <h2>โพสต์ประกาศหาเพื่อนทีม</h2>
+      <form id="lfgForm">
+        <label>ชื่อทีม/ผู้เล่น<input type="text" name="team" required></label>
+        <label>แรงค์<select name="rank">
+          <option>Iron</option>
+          <option>Bronze</option>
+          <option>Silver</option>
+          <option>Gold</option>
+          <option>Platinum</option>
+          <option>Diamond</option>
+          <option>Immortal</option>
+          <option>Radiant</option>
+        </select></label>
+        <label>เวลาที่สะดวก<input type="text" name="time" placeholder="เช่น จ-ศ 19:00-22:00" required></label>
+        <label>ติดต่อ<input type="text" name="contact" placeholder="Discord#0000 หรือ Email" required></label>
+        <button type="submit">โพสต์ประกาศ</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>ประกาศล่าสุด</h2>
+      <table>
+        <thead>
+          <tr><th>ทีม/ผู้เล่น</th><th>แรงค์</th><th>เวลาที่สะดวก</th><th>ติดต่อ</th></tr>
+        </thead>
+        <tbody id="lfgList">
+          <tr><td>PhantomRush</td><td>Gold</td><td>จ-ศ 19:00-22:00</td><td><a href="https://discord.com" target="_blank">Discord</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>นโยบาย</h2>
+      <p>❗️ เว็บไซต์นี้เป็นตัวอย่างสำหรับชุมชน VALORANT <strong>ไม่อนุญาตให้ซื้อ/ขาย/โอนบัญชี หรือบริการบูสต์</strong>. กิจกรรมดังกล่าวละเมิดข้อกำหนดของ Riot Games. ที่นี่เน้น LFG, การโค้ช, และกิจกรรมชุมชนเท่านั้น.</p>
+    </div>
+  </main>
+  <footer>
+    © 2025 VALORANT Community LFG – สร้างด้วย GitHub Pages
+  </footer>
+
+  <script>
+    const form = document.getElementById('lfgForm');
+    const list = document.getElementById('lfgList');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const team = data.get('team');
+      const rank = data.get('rank');
+      const time = data.get('time');
+      const contact = data.get('contact');
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${team}</td><td>${rank}</td><td>${time}</td><td>${contact}</td>`;
+      list.appendChild(tr);
+
+      form.reset();
+    });
+  </script>
+</body>
+</html>
